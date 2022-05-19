@@ -1,27 +1,22 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-</template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
-
-export default defineComponent({
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-});
+<script setup lang="ts">
+import BoxConverter from "@/components/BoxConverter.vue";
+import BoxInfo from "@/components/BoxInfo.vue";
 </script>
 
+<template>
+  <BoxConverter />
+  <br />
+  <BoxInfo />
+</template>
+
 <style lang="scss">
+* {
+  margin: 0;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 </style>
