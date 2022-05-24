@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, defineExpose } from "vue";
 
 const isVisible = ref(false);
 const parentDiv = ref<HTMLElement | null>(null);
@@ -14,18 +14,14 @@ function close() {
   parentDiv.value?.classList.remove("visible");
 }
 
-defineExpose ({
+defineExpose({
   open,
   close,
-})
+});
 </script>
 
 <template>
-  <div
-    ref="parentDiv"
-  >
-    Aqui vai todas as informações sobre o conversor...
-  </div>
+  <div ref="parentDiv">Aqui vai todas as informações sobre o conversor...</div>
 </template>
 
 <style lang="scss" scoped>

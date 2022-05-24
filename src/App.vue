@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BoxConverter from "@/components/BoxConverter.vue";
-import BoxInfo from "@/components/BoxInfo";1
+import BoxConverter from "@/components/BoxConverter";
+import BoxInfo from "@/components/BoxInfo";
 import { ref } from "vue";
 
 const infoIcon = ref("fa-solid fa-question");
@@ -18,17 +18,13 @@ function onClickInfoBtn() {
 </script>
 
 <template>
-  <BoxConverter />
-  <button
-    class="btn-info"
-    @click="onClickInfoBtn"
-  >
+  <BoxConverter ref="BoxConverterComponent" />
+
+  <button class="btn-info" @click="onClickInfoBtn">
     <i :class="infoIcon" />
   </button>
 
-  <BoxInfo
-    ref="BoxInfoComponent"
-  />
+  <BoxInfo ref="BoxInfoComponent" />
 </template>
 
 <style lang="scss">
@@ -48,7 +44,9 @@ function onClickInfoBtn() {
   justify-content: center;
   align-items: center;
   background: #1a1a1a;
-  color: #FFF;
+  color: #fff;
+  font-family: "Poppins";
+  font-weight: 400;
 }
 
 .btn-info {
@@ -72,7 +70,7 @@ function onClickInfoBtn() {
   }
 
   &:hover {
-    color: #FFF;
+    color: #fff;
   }
 }
 </style>
