@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BoxConverter from "@/components/BoxConverter";
-import BoxInfo from "@/components/BoxInfo";
+import BoxConverter from "@/components/BoxConverter.vue";
+import BoxInfo from "@/components/BoxInfo.vue";
 import { ref } from "vue";
 
 const infoIcon = ref("fa-solid fa-question");
