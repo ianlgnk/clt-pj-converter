@@ -47,6 +47,7 @@ function onClickInfoBtn() {
   color: #fff;
   font-family: "Poppins";
   font-weight: 400;
+  overflow: hidden;
 }
 
 .btn-info {
