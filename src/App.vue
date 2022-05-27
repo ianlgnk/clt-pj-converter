@@ -38,7 +38,7 @@ function onClickInfoBtn() {
 #app {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +63,7 @@ function onClickInfoBtn() {
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  transition: all 0.2s;
+  transition: all 0.2s ease-in-out;
   z-index: 2;
 
   i {

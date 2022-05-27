@@ -33,7 +33,7 @@ div {
   height: calc(100vh - 60px);
   transform: translateY(calc(-100vh - 60px));
   background: rgba(0, 0, 0, 0.8);
-  transition: all 0.5s ease-out;
+  transition: all 0.5s ease-in-out;
   z-index: 1;
 
   &.visible {
