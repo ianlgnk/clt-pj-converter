@@ -14,7 +14,8 @@ const isBenefitsEmpty = computed(() => benefits.value.length === 0);
 function onClickCalcular() {
   verifyInputStatus(["grossPay", "benefits"]);
   if (isGrossPayEmpty.value || isBenefitsEmpty.value) return;
-  console.log("exec calculo...");
+  console.log(`grossPay = ${grossPay.value}`);
+  console.log(`benefits = ${benefits.value}`);
 }
 
 function onInput(event: Event) {
@@ -22,10 +23,10 @@ function onInput(event: Event) {
   let varsToCheck = [] as Array<string>;
 
   if (input === grossPayInput.value) {
-    grossPay.value = formatBrlMoney(input.value);
+    grossPay.value = formatBrlMoney(returnOnlyNumbers(input.value));
     varsToCheck.push("grossPay");
   } else {
-    benefits.value = input.value;
+    benefits.value = formatBrlMoney(returnOnlyNumbers(input.value));
     varsToCheck.push("benefits");
   }
 
@@ -57,6 +58,11 @@ function onBlur(event: Event) {
     varsToCheck.push("benefits");
   }
 
+  if (grossPay.value === "R$ " || grossPay.value === "R$ 0,00")
+    grossPay.value = "";
+  if (benefits.value === "R$ " || benefits.value === "R$ 0,00")
+    benefits.value = "";
+
   verifyInputStatus(varsToCheck);
 }
 
@@ -82,9 +88,17 @@ function verifyInputStatus(varsToBeChecked: Array<string>) {
   }
 }
 
-function formatBrlMoney(text: string): string {
-  if (text === null || text === undefined) return text;
+function returnOnlyNumbers(text: string): string {
   return text.replace(/\D/g, "");
+}
+
+function formatBrlMoney(text: string): string {
+  const result = new Intl.NumberFormat("pt-BR", {
+    minimumFractionDigits: 2,
+  }).format(parseFloat(text) / 100);
+
+  if (typeof result === "string" && result !== "NaN") return `R$ ${result}`;
+  else return "R$ ";
 }
 </script>
 
@@ -116,7 +130,7 @@ function formatBrlMoney(text: string): string {
             </div>
             <input
               ref="benefitsInput"
-              :value="benefits"
+              v-model="benefits"
               placeholder="R$ 0000,00"
               @input="onInput"
               @focus="onFocus"
