@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { isString } from "@vue/shared";
 import { ref, computed } from "vue";
 
 const grossPay = ref("");
@@ -105,6 +104,11 @@ function formatBrlMoney(text: string): string {
 <template>
   <div class="container">
     <div class="box">
+      <div class="header">
+        <div>
+          <i class="fa-solid fa-brain"></i>
+        </div>
+      </div>
       <div class="main">
         <div class="form-item">
           <h2>Salário Bruto</h2>
@@ -159,22 +163,38 @@ function formatBrlMoney(text: string): string {
   align-items: center;
 
   .box {
+    position: relative;
     max-width: calc(300px - 22px);
     width: calc(100% - 22px);
     background: #242424;
-    padding: 10px 10px;
+    padding: 35px 10px 10px 10px;
     border-radius: 10px;
     border: solid 1px #42b883;
     display: flex;
     flex-direction: column;
 
     .header {
-      display: flex;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      margin-bottom: 20px;
+      position: absolute;
+      top: -25px;
+      left: calc(50% - 25px);
+      width: 48px;
+      height: 48px;
+      background: #242424;
+      border: solid 1px #42b883;
+      border-radius: 100px;
+
+      div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+          color: #fff;
+          font-size: 20px;
+        }
+      }
     }
 
     .main {
