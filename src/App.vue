@@ -4,15 +4,25 @@ import BoxInfo from "@/components/BoxInfo.vue";
 import { ref } from "vue";
 
 const infoIcon = ref("fa-solid fa-question");
+const BoxConverterComponent = ref<InstanceType<typeof BoxConverter> | null>(
+  null
+);
 const BoxInfoComponent = ref<InstanceType<typeof BoxInfo> | null>(null);
+const btnInfo = ref<HTMLButtonElement | null>(null);
 
 function onClickInfoBtn() {
   if (infoIcon.value === "fa-solid fa-question") {
     infoIcon.value = "fa-solid fa-xmark";
-    BoxInfoComponent.value?.open();
+    BoxInfoComponent.value?.open(
+      BoxConverterComponent.value?.returnConversorData()
+    );
+    btnInfo.value?.classList.add("active");
+    BoxConverterComponent.value?.switchOpacityComponent(true);
   } else {
     infoIcon.value = "fa-solid fa-question";
     BoxInfoComponent.value?.close();
+    btnInfo.value?.classList.remove("active");
+    BoxConverterComponent.value?.switchOpacityComponent(false);
   }
 }
 </script>
@@ -20,7 +30,7 @@ function onClickInfoBtn() {
 <template>
   <BoxConverter ref="BoxConverterComponent" />
 
-  <button class="btn-info" @click="onClickInfoBtn">
+  <button ref="btnInfo" class="btn-info" @click="onClickInfoBtn">
     <i :class="infoIcon" />
   </button>
 
@@ -64,7 +74,7 @@ function onClickInfoBtn() {
   align-items: center;
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
-  z-index: 2;
+  z-index: 3;
 
   i {
     font-size: 15px;
@@ -72,6 +82,15 @@ function onClickInfoBtn() {
 
   &:hover {
     color: #fff;
+  }
+
+  &.active {
+    background: #d11507;
+    color: #fff;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 </style>
